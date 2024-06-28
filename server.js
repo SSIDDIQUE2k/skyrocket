@@ -8,6 +8,10 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
+// server.js
+
+const applicationsController = require('./controllers/applications.js');
+
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -34,15 +38,11 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/vip-lounge', (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-  } else {
-    res.send('Sorry, no guests allowed.');
-  }
-});
-
 app.use('/auth', authController);
+app.use('/users/applications', applicationsController); 
+// New! ` /users/applications` is the base URL for all of our application routes`
+
+
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
