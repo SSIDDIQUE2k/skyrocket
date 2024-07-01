@@ -19,8 +19,8 @@ router.get('/', async (req, res) => {
     }
   });
   
-  router.get('/', (req, res) => {   
-    res.send('Hello from applications controller');
+  router.get('/new', (req, res) => {   
+    res.render('applications/new.ejs');
     });
 module.exports = router;
 
